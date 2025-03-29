@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+
+@font-face {
+    font-family: iranyekan;
+    src: url(./assets//fonts//iranyekanwebregularfanum.woff
+);
+}
+
+
+.main-font{
+    font-family: iranyekan;
+}
