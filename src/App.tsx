@@ -1,17 +1,12 @@
-import {Helmet} from "react-helmet";
-
+// import { Helmet } from "react-helmet";
+import { BrowserRouter } from "react-router-dom";
+import Layout from "./Layouts/Layout";
 function App() {
-  
   return (
-    <div className="text-center items-center text-6xl mt-60 main-font"  >
-      <Helmet>
-        <title>صفحه اصلی | فرانت کست</title>
-
-      </Helmet>
-      front cast
-
-    </div>
-  )
+    <BrowserRouter>
+      <Layout />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
