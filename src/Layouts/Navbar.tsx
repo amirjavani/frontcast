@@ -16,14 +16,14 @@ function Navbar ({className}: {className:string}) {
           حساب کاربری
         </Link>
       </li>
-      <li className="hover:text-[#1976D2]  transition-colors">
-        <Link to="">صفحه اصلی</Link>
+      <li className="hover:text-[#1976D2]  transition-colors duration-300">
+        <Link to="/">صفحه اصلی</Link>
       </li>
-      <li className="hover:text-[#1976D2]  transition-colors">
-        <Link to="">دوره‌های آموزشی</Link>
+      <li className="hover:text-[#1976D2]  transition-colors duration-300">
+        <Link to="/course">دوره‌های آموزشی</Link>
       </li>
-      <li className="hover:text-[#1976D2]  transition-colors">
-        <Link to="">سبد خرید</Link>
+      <li className="hover:text-[#1976D2]  transition-colors duration-300">
+        <Link to="/cart">سبد خرید</Link>
       </li>
     </ul>
   );

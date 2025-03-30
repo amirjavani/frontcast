@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import frontcastLogo from "../assets/images/frontcast-logo-top.png";
 import { TfiMenu } from "react-icons/tfi";
 import { useRef, useState } from "react";
@@ -25,10 +24,10 @@ function Header() {
           <img className="h-full" src={frontcastLogo} alt="" />
         </nav>
         <div
-          className={`transition-[100px] duration-300 ease-in-out overflow-hidden md:hidden 
+          className={`transition-[100px]  duration-600 ease overflow-hidden md:hidden 
             ${showMenu ? "max-h-96" : "max-h-0"}
             `}>
-          <Navbar className="flex flex-col bg-gray-100 p-4 rounded-md" />
+          <Navbar className="flex flex-col bg-gray-200 p-4 rounded-md" />
         </div>
       </div>
     </header>
