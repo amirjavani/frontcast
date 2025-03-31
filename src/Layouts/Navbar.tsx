@@ -1,14 +1,8 @@
 import { Link } from "react-router";
 
-function Navbar ({className}: {className:string}) {
+function Navbar({ className }: { className: string }) {
   return (
-    <ul
-      className={`${
-        className
-        // showMenu
-        //   ? "flex flex-col  top-30 bg-[rgb(134,134,134)] p-4 w-full"
-        //   : "hidden"
-      }     gap-5 lg:gap-8 text-[16px] font-bold `}>
+    <ul className={`${className }  gap-5 lg:gap-8 text-[16px] font-bold `}>
       <li>
         <Link
           to="/login"

@@ -18,14 +18,14 @@ function Header() {
         <nav className="flex  flex-row justify-between items-center h-14 py-3 ">
           <TfiMenu
             onClick={() => showMenuToggle()}
-            className="show md:hidden text-[40px] text-[rgb(134,134,134)] py-0.5 px-2  border rounded cursor-pointer hover:bg-[rgb(240,239,239)]"
+            className="show lg:hidden text-[40px] text-[rgb(134,134,134)] py-0.5 px-2  border rounded cursor-pointer hover:bg-[rgb(240,239,239)]"
           />
-          <Navbar className={"flex-row md:flex hidden"} />
+          <Navbar className={"flex-row lg:flex hidden"} />
           <img className="h-full" src={frontcastLogo} alt="" />
         </nav>
         <div
-          className={`transition-[100px]  duration-600 ease overflow-hidden md:hidden 
-            ${showMenu ? "max-h-96" : "max-h-0"}
+          className={`transition-[100px]  duration-600 ease overflow-hidden lg:hidden 
+            ${showMenu ? "max-h-96 " : "max-h-0 "}
             `}>
           <Navbar className="flex flex-col bg-gray-200 p-4 rounded-md" />
         </div>
