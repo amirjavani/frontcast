@@ -6,9 +6,12 @@ import {
 import { FaTelegram, FaTwitter } from "react-icons/fa";
 import zarinpalImage from "../assets/images/zarinpal.png";
 import { Link } from "react-router";
+import { useThemeContext } from "../Context/ThemeProvider";
 function Footer() {
+  const {theme} = useThemeContext()
+
   return (
-    <footer className="mt-10  text-[#424242]">
+    <footer className={`mt-10  ${theme == 'dark'?'text-[#ebe9e9]':'text-[#424242]' }`}>
       <hr className="opacity-20"></hr>
       <div className="flex flex-col md:flex-row justify-between items-center">
         <div className="flex flex-col">
