@@ -8,6 +8,9 @@ export interface ThemeContextType {
 }
 
 const themeContext = createContext<ThemeContextType | undefined>(undefined);
+
+
+
 function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(
     (localStorage.getItem("theme") as Theme) || "light"
