@@ -4,7 +4,7 @@ import { BsCameraVideo, BsChatDots, BsClock, BsListCheck, BsPencilSquare, BsWall
 
 function IntroductionComponent() {
   return (
-    <section className="mt-20 text-start flex justify-between items-center">
+    <section className="mt-20 mb-35 text-start flex justify-between items-center">
       <div className="w-[100%]">
         <h2 className="text-[32px] font-bold mb-[48px]">
           برنامه نویسی به زبان ساده.

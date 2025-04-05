@@ -17,16 +17,16 @@ function HomePage() {
   const fetchProducts = async () => {
     try {
       const data = await getCardProducts();
-      
+
       setProductsCards(data);
     } catch (error) {
       console.log(error);
     }
   };
-  
 
   useEffect(() => {
     fetchProducts();
+
     return () => {};
   }, []);
 
@@ -34,7 +34,7 @@ function HomePage() {
     <main className="text-center">
       <IntroductionComponent />
 
-      <CoursesComponent productsCards={productsCards.slice(0,6)} />
+      <CoursesComponent productsCards={productsCards.slice(0, 6)} />
 
       <Link
         to="/course"
