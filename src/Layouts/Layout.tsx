@@ -2,6 +2,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Route, Routes } from "react-router";
 import { useThemeContext } from "../Context/ThemeProvider";
+import HomePage from "../pages/HomePage";
 
 function Layout() {
   const { theme } = useThemeContext();
@@ -15,7 +16,7 @@ function Layout() {
       <div className="container px-10 mx-auto lg:px-20">
         <Header />
         <Routes>
-          <Route path="/" element={<>Home</>} />
+          <Route path="/" element={<HomePage/>} />
         </Routes>
         <Footer />
       </div>

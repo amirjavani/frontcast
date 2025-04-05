@@ -14,7 +14,7 @@ function Header() {
   };
 
   return (
-    <header className={`pt-12 `}>
+    <header className={`pt-12 mb-10 `}>
       <div className="container ">
         <nav className="flex  flex-row justify-between items-center h-14 py-3 ">
           <TfiMenu
