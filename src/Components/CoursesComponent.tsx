@@ -1,5 +1,6 @@
+import { ProductsCard } from "../pages/HomePage";
 import CardComponent from "./CardComponent";
-function CoursesComponent() {
+function CoursesComponent({productsCards}:{productsCards:Array<ProductsCard>}) {
   return (
     <div className="text-start mt-50 mb-20">
       <h1 className="text-[32px] font-bold mb-10">دوره‌های آموزشی</h1>

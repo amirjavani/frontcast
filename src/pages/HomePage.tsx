@@ -1,16 +1,41 @@
-import React from "react";
 import IntroductionComponent from "../Components/IntroductionComponent";
 import CoursesComponent from "../Components/CoursesComponent";
 import { Link } from "react-router";
 import TestimonialsComponent from "../Components/TestimonialsComponent";
+import { useEffect, useState } from "react";
+import { getCardProducts } from "../utilities/api";
+
+export type ProductsCard={
+  id:number,
+  title:string,
+  price:string,
+  thumbnail:string,
+}
+
 
 function HomePage() {
+  const [productsCards, setProductsCards] = useState<ProductsCard[]>([]);
+  const fetchProducts = async()=>{
+    try {
+      setProductsCards(await getCardProducts())
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts()
+    return () => {
+      
+    };
+  }, []);
+
   return (
     <main className="text-center">
       
       <IntroductionComponent />
 
-      <CoursesComponent />
+      <CoursesComponent productsCards={productsCards} />
 
       <Link
         to="/course"
