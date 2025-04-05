@@ -4,6 +4,7 @@ import { useState } from "react";
 import Navbar from "./Navbar";
 import DarkmodeLightmodeButton from "../Components/DarkmodeLightmodeButton";
 import { useThemeContext } from "../Context/ThemeProvider";
+import { Link } from "react-router";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
@@ -24,7 +25,9 @@ function Header() {
           <Navbar className={"flex-row lg:flex hidden"} />
           <DarkmodeLightmodeButton />
 
-          <img className="h-full" src={frontcastLogo} alt="" />
+          <Link className="" to={"/"}>
+            <img className="h-10" src={frontcastLogo} alt="logo" />
+          </Link>
         </nav>
         <div
           className={`transition-[100px]  duration-600 ease-in-out overflow-hidden lg:hidden 

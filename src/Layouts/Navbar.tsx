@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 function Navbar({ className }: { className: string }) {
   return (
-    <ul className={`${className }  gap-5 lg:gap-8 text-[16px] font-bold `}>
+    <ul className={`${className }  gap-5 xl:gap-8 text-[18px] font-bold `}>
       <li>
         <Link
           to="/login"
