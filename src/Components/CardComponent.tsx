@@ -1,28 +1,29 @@
-import { BsArrowDownLeft } from "react-icons/bs";
+import { , BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router";
 import { useThemeContext } from "../Context/ThemeProvider";
+import { ProductsCard } from "../pages/HomePage";
 
-function CardComponent() {
-
-    const {theme} = useThemeContext()
+function CardComponent({ productsCard }: { productsCard: ProductsCard }) {
+  const { theme } = useThemeContext();
   return (
-    <div className={`flex flex-col justify-start w-full  ${theme=='dark'?'bg-gray-500':'bg-white'}  shadow rounded-t-2xl rounded-b-2xl`}>
+    <div
+      className={`flex flex-col justify-start w-full  ${
+        theme == "dark" ? "bg-gray-500" : "bg-white"
+      }  shadow rounded-t-2xl rounded-b-2xl`}>
       <Link to={"/"}>
         <img
           className="rounded-t-2xl"
-          src={
-            "https://frontcast.ir/wp-content/uploads/2024/11/tailwind-css-600_400-1x-1.png"
-          }
+          src={"http://localhost:5000" + productsCard.thumbnail}
           alt="pic"
         />
       </Link>
       <div className="px-5 py-6 flex flex-col gap-16">
-        <p className="font-bold text-[20px]">آموزش Tailwind CSS – دوره فشرده</p>
-        <div className="flex justify-between">
-          <Link className="flex" to={"/"}>
-            مشاهده دوره <BsArrowDownLeft />
+        <p className="font-bold text-[20px]">{productsCard.title}</p>
+        <div className="flex items-center justify-between text-[#1565c0] font-bold">
+          <Link className="flex items-center gap-2"  to={`/product/${productsCard.id}`}>
+            مشاهده دوره <BsArrowLeft />
           </Link>
-          <span>قیمت </span>
+          <span>{productsCard.price == '0'?'رایگان':productsCard.price} </span>
         </div>
       </div>
     </div>

@@ -5,37 +5,36 @@ import TestimonialsComponent from "../Components/TestimonialsComponent";
 import { useEffect, useState } from "react";
 import { getCardProducts } from "../utilities/api";
 
-export type ProductsCard={
-  id:number,
-  title:string,
-  price:string,
-  thumbnail:string,
-}
-
+export type ProductsCard = {
+  id: number;
+  title: string;
+  price: string;
+  thumbnail: string;
+};
 
 function HomePage() {
   const [productsCards, setProductsCards] = useState<ProductsCard[]>([]);
-  const fetchProducts = async()=>{
+  const fetchProducts = async () => {
     try {
-      setProductsCards(await getCardProducts())
+      const data = await getCardProducts();
+      
+      setProductsCards(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
+  
 
   useEffect(() => {
-    fetchProducts()
-    return () => {
-      
-    };
+    fetchProducts();
+    return () => {};
   }, []);
 
   return (
     <main className="text-center">
-      
       <IntroductionComponent />
 
-      <CoursesComponent productsCards={productsCards} />
+      <CoursesComponent productsCards={productsCards.slice(0,6)} />
 
       <Link
         to="/course"
@@ -44,7 +43,6 @@ function HomePage() {
       </Link>
 
       <TestimonialsComponent />
-
     </main>
   );
 }
