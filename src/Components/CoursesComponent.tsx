@@ -9,6 +9,7 @@ function CoursesComponent() {
         <CardComponent />
         <CardComponent />
         <CardComponent />
+        <CardComponent />
       </div>
     </div>
   );
