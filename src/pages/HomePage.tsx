@@ -2,7 +2,7 @@ import React from "react";
 import IntroductionComponent from "../Components/IntroductionComponent";
 import CoursesComponent from "../Components/CoursesComponent";
 import { Link } from "react-router";
-import CommentsComponent from "../Components/CommentsComponent";
+import TestimonialsComponent from "../Components/TestimonialsComponent";
 
 function HomePage() {
   return (
@@ -18,8 +18,8 @@ function HomePage() {
         مشاهده همه دوره‌های آموزشی{" "}
       </Link>
 
-      <CommentsComponent />
-      
+      <TestimonialsComponent />
+
     </main>
   );
 }
