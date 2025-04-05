@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import { Route, Routes } from "react-router";
 import { useThemeContext } from "../Context/ThemeProvider";
 import HomePage from "../pages/HomePage";
+import CoursesPage from "../pages/CoursesPage";
 
 function Layout() {
   const { theme } = useThemeContext();
@@ -17,6 +18,7 @@ function Layout() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage/>} />
+          <Route path="/courses" element={<CoursesPage/>} />
         </Routes>
         <Footer />
       </div>

@@ -14,7 +14,7 @@ function Navbar({ className }: { className: string }) {
         <Link to="/">صفحه اصلی</Link>
       </li>
       <li className="hover:text-[#1976D2]  transition-colors duration-300">
-        <Link to="/course">دوره‌های آموزشی</Link>
+        <Link to="/courses">دوره‌های آموزشی</Link>
       </li>
       <li className="hover:text-[#1976D2]  transition-colors duration-300">
         <Link to="/cart">سبد خرید</Link>

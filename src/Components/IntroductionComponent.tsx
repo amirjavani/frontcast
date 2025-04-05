@@ -17,7 +17,7 @@ function IntroductionComponent() {
           و به یک توسعه‌دهنده حرفه‌ای تبدیل شوید.
         </p>
         <Link
-          to="/course"
+          to="/courses"
           className="text-[rgb(248,249,250)] px-3 bg-[#1976D2] py-2 rounded-lg hover:bg-[#1564b3] transition-colors  mb-[30px]">
           شروع یادگیری
         </Link>

@@ -1,4 +1,4 @@
-import { , BsArrowLeft } from "react-icons/bs";
+import {  BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router";
 import { useThemeContext } from "../Context/ThemeProvider";
 import { ProductsCard } from "../pages/HomePage";
