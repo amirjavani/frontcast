@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router";
 import { useThemeContext } from "../Context/ThemeProvider";
 import HomePage from "../pages/HomePage";
 import CoursesPage from "../pages/CoursesPage";
+import AuthPage from "../pages/AuthPage";
 
 function Layout() {
   const { theme } = useThemeContext();
@@ -19,6 +20,7 @@ function Layout() {
         <Routes>
           <Route path="/" element={<HomePage/>} />
           <Route path="/courses" element={<CoursesPage/>} />
+          <Route path="/auth" element={<AuthPage/>} />
         </Routes>
         <Footer />
       </div>

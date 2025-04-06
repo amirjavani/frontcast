@@ -5,7 +5,7 @@ function Navbar({ className }: { className: string }) {
     <ul className={`${className }  gap-5 xl:gap-8 text-[18px] font-bold `}>
       <li>
         <Link
-          to="/login"
+          to="/auth"
           className="text-[rgb(248,249,250)] px-3 bg-[#1976D2] py-2 rounded-lg hover:bg-[#1564b3] transition-colors ">
           حساب کاربری
         </Link>

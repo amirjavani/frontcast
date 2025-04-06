@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { getCardProducts } from "../utilities/api";
 import { ProductsCard } from "./HomePage";
 import CoursesComponent from "../Components/CoursesComponent";
