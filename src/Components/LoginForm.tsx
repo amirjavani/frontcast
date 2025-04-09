@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { loginThunk } from "../store/authSlice";
 import { useAppDispatch } from "../store/hook";
-import {  Slide, toast, ToastContainer } from "react-toastify";
+import {toast} from "react-toastify";
 
 export type LoginPayload = {
   username: string;

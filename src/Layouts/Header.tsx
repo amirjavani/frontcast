@@ -8,7 +8,9 @@ import { Link } from "react-router";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
+
   const { theme } = useThemeContext();
+
 
   const showMenuToggle = () => {
     setShowMenu(!showMenu);
