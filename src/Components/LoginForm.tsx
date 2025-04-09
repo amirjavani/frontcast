@@ -2,8 +2,11 @@ import { useState } from "react";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { useThemeContext } from "../Context/ThemeProvider";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import { loginThunk } from "../store/authSlice";
+import { useAppDispatch } from "../store/hook";
 
-type LoginFormInputs = {
+export type LoginPayload = {
   username: string;
   password: string;
 };
@@ -11,17 +14,26 @@ type LoginFormInputs = {
 const LoginForm = () => {
   const [showPassLogin, setShowPassLogin] = useState(false);
   //const [showPassRegister, setShowPassRegister] = useState(false);
-
+  const navigator = useNavigate();
   const { theme } = useThemeContext();
+  const dispatch = useAppDispatch();
 
   const {
     register: loginRegister,
     handleSubmit: handleLoginSubmit,
     formState: { errors: loginErrors },
-  } = useForm<LoginFormInputs>();
+  } = useForm<LoginPayload>();
 
-  const onLoginSubmit = (data: LoginFormInputs) => {
-    console.log(data);
+  const onLoginSubmit = async (data: LoginPayload) => {
+    const res = await dispatch(loginThunk(data));
+
+    if (loginThunk.fulfilled.match(res)) {
+      console.log("Login successful:", res.payload.message);
+      // You can redirect or do something here
+    } else {
+      console.error("Login failed:", res.payload);
+      // Show error message to user (res.payload contains the error you returned)
+    }
   };
 
   const inputsStyle =
@@ -43,7 +55,7 @@ const LoginForm = () => {
             className={
               inputsStyle + `${loginErrors.username ? " border-red-400" : ""}`
             }
-            id="username"
+            id="loginusername"
             type="text"
             title="نام کاربری یا آدرس ایمیل"
             {...loginRegister("username", {
@@ -68,7 +80,7 @@ const LoginForm = () => {
             className={
               inputsStyle + `${loginErrors.password ? " border-red-400" : ""}`
             }
-            id="pass"
+            id="loginpassword"
             type={showPassLogin ? "text" : "password"}
             title="گذرواژه "
             {...loginRegister("password", {
