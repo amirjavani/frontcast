@@ -5,6 +5,7 @@ import { useThemeContext } from "../Context/ThemeProvider";
 import HomePage from "../pages/HomePage";
 import CoursesPage from "../pages/CoursesPage";
 import AuthPage from "../pages/AuthPage";
+import MyAccountPage from "../pages/MyAccountPage";
 
 function Layout() {
   const { theme } = useThemeContext();
@@ -13,14 +14,34 @@ function Layout() {
     <div
       dir="rtl"
       className={`main-font  ${
-        theme=='dark' ? "bg-[#50576b] text-[#f8f9fa]" : "bg-[#f8f9fa] text-[#212121]"
+        theme == "dark"
+          ? "bg-[#50576b] text-[#f8f9fa]"
+          : "bg-[#f8f9fa] text-[#212121]"
       }   transition-all`}>
       <div className="container px-10 mx-auto lg:px-20">
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage/>} />
-          <Route path="/courses" element={<CoursesPage/>} />
-          <Route path="/auth" element={<AuthPage/>} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/my-account" element={<MyAccountPage />}>
+            <Route
+              index
+              element={
+                <div>
+                  <p>
+                    سلام <span className="text-[#1565c0]">{}</span>
+                  </p>
+                  <p>
+                    فایل‌های دوره‌هایی که ثبت نام کرده‌اید در قسمت دوره‌ها قرار
+                    دارد.
+                  </p>
+                </div>
+              }
+            />
+            <Route path="downloads" element={<>دوره ها</>} />
+            <Route path="edit-account" element={<>ویرایش</>} />
+          </Route>
         </Routes>
         <Footer />
       </div>
