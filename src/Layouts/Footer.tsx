@@ -7,6 +7,7 @@ import { FaTelegram, FaTwitter } from "react-icons/fa";
 import zarinpalImage from "../assets/images/zarinpal.png";
 import { Link } from "react-router";
 import { useThemeContext } from "../Context/ThemeProvider";
+import { Slide, ToastContainer } from "react-toastify";
 function Footer() {
   const {theme} = useThemeContext()
 
@@ -50,7 +51,19 @@ function Footer() {
           alt="zarinpall"
         />
       </div>
-
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme={theme}
+        transition={Slide}
+      />
       <p className="mt-12 text-center  md:text-start pb-35 md:pb-20">
         تمامی حقوق برای فرانت‌کست محفوظ است.
       </p>

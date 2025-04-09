@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { loginThunk } from "../store/authSlice";
 import { useAppDispatch } from "../store/hook";
+import {  Slide, toast, ToastContainer } from "react-toastify";
 
 export type LoginPayload = {
   username: string;
@@ -29,10 +30,11 @@ const LoginForm = () => {
 
     if (loginThunk.fulfilled.match(res)) {
       console.log("Login successful:", res.payload.message);
-      // You can redirect or do something here
+      toast.success(`${res.payload.message}`)
+      navigator("/my-account");
     } else {
       console.error("Login failed:", res.payload);
-      // Show error message to user (res.payload contains the error you returned)
+      toast.error(`${res.payload}`)
     }
   };
 
@@ -116,6 +118,7 @@ const LoginForm = () => {
           ورود
         </button>
       </form>
+      
     </div>
   );
 };
