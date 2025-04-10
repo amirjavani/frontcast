@@ -110,7 +110,7 @@ function ProductPage() {
         </div>
       </section>
       <div
-        className={`my-20 p-1 md:p-10 rounded-lg ${
+        className={`my-20 p-2 md:p-10 rounded-lg ${
           theme == "dark" ? "bg-gray-500" : "bg-white"
         }`}>
         <div>{product?.description}</div>

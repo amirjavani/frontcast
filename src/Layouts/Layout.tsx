@@ -19,7 +19,7 @@ function Layout() {
           ? "bg-[#50576b] text-[#f8f9fa]"
           : "bg-[#f8f9fa] text-[#212121]"
       }   transition-all`}>
-      <div className="container px-10 mx-auto lg:px-20">
+      <div className="container p-2 sm:px-5 md:px-15 mx-auto lg:px-20">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
