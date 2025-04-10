@@ -3,7 +3,8 @@ import { getSingleProduct } from "../utilities/api";
 import { Link, useParams } from "react-router";
 import { useThemeContext } from "../Context/ThemeProvider";
 import { BsCash, BsClock, BsMortarboard, BsYoutube } from "react-icons/bs";
-
+import { useAppSelector } from "../store/hook";
+import disabledIntro from "../assets/images/disabled-intro.png";
 type ProductSesions = {
   title: string;
   description: string;
@@ -44,6 +45,8 @@ function ProductPage() {
 
   const addProductToCart = () => {};
 
+  const token = useAppSelector((state) => state?.authentication.token);
+
   return (
     <section className="mt-5">
       <div
@@ -75,11 +78,24 @@ function ProductPage() {
               ثبت نام در دوره
             </button>
           </div>
-          <video
-            crossOrigin="anonymous"
-            className="hidden md:block md:h-45 lg:h-50 xl:h-60  rounded-xl"
-            src={"http://localhost:5000" + product?.url}
-            controls></video>
+          {token ? (
+            <video
+              crossOrigin="anonymous"
+              className="hidden md:block md:h-45 lg:h-60 xl:h-80   rounded-xl"
+              src={"http://localhost:5000" + product?.url}
+              controls></video>
+          ) : (
+            <Link to={'/auth'} className="relative hidden md:block    ">
+              <img
+                alt="disabled"
+                className="md:h-45 lg:h-60  xl:h-80  rounded-xl blur-[2px] pointer-events-none"
+                src={disabledIntro}
+              />
+              <div className="absolute inset-0 flex items-center  p-2 justify-center text-white text-[14px] font-semibold bg-black/40 rounded-lg">
+                برای مشاهده ویدیو وارد شوید.
+              </div>
+            </Link>
+          )}
         </div>
         <div className=" ml-auto mt-5 font-medium ">
           <div className="flex items-center gap-4 cursor-pointer ml-auto">
