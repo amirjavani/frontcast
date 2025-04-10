@@ -48,8 +48,6 @@ function ProductPage() {
 
   const token = useAppSelector((state) => state?.authentication.token);
 
-
-  
   return (
     <div>
       <section className="mt-5">
@@ -111,12 +109,24 @@ function ProductPage() {
           </div>
         </div>
       </section>
-      <div className={`my-20 p-1 md:p-10 rounded-lg ${theme=='dark'?'bg-gray-500':'bg-white'}`}>
-            <div>{product?.description}</div>
-            <div className="my-10">
-                <h3 className="text-[22px]">سرفصل ها</h3>
-                {product?.sesions && <AccordionComponent sesion={product.sesions[0]} startNum={0}/>}
-            </div>
+      <div
+        className={`my-20 p-1 md:p-10 rounded-lg ${
+          theme == "dark" ? "bg-gray-500" : "bg-white"
+        }`}>
+        <div>{product?.description}</div>
+        <div className="my-10">
+          <h3 className="text-[22px]">سرفصل ها</h3>
+          {product?.sesions &&
+            product?.sesions.map((item, index) => {
+              let startnumber = 0;
+              product.sesions.slice(0, index).forEach((item) => {
+                startnumber = startnumber + item.description.length;
+              });
+              return (
+                <AccordionComponent sesion={item} startNum={startnumber} />
+              );
+            })}
+        </div>
       </div>
     </div>
   );
