@@ -8,7 +8,7 @@ import { logout } from "../store/authSlice";
 
 function MyAccountPage() {
   const { theme } = useThemeContext();
-  const token = useAppSelector((state) => state.authentication.token);
+  const token = useAppSelector((state) => state?.authentication.token);
 
   const dispatch = useAppDispatch()
   return (

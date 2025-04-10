@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import CoursesPage from "../pages/CoursesPage";
 import AuthPage from "../pages/AuthPage";
 import MyAccountPage from "../pages/MyAccountPage";
+import ProductPage from "../pages/ProductPage";
 
 function Layout() {
   const { theme } = useThemeContext();
@@ -24,14 +25,13 @@ function Layout() {
           <Route path="/" element={<HomePage />} />
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/my-account" element={<MyAccountPage />}>
             <Route
               index
               element={
                 <div>
-                  <p>
-                    سلام <span className="text-[#1565c0]">{}</span>
-                  </p>
+                  <p>سلام</p>
                   <p>
                     فایل‌های دوره‌هایی که ثبت نام کرده‌اید در قسمت دوره‌ها قرار
                     دارد.

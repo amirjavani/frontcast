@@ -12,7 +12,13 @@ export const getCardProducts = async () => {
   }
 };
 
+
 export const loginUserAPI = async ({ username, password }: LoginPayload) => {
   const res = await axiosHandler.post("/users/login", { username, password });
+  return res.data;
+};
+
+export const getSingleProduct = async (id:string|undefined) => {
+  const res = await axiosHandler.get(`/products/${id}`);
   return res.data;
 };
