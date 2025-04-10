@@ -51,7 +51,7 @@ function ProductPage() {
     <section className="mt-5">
       <div
         className={`container px-3 sm:px-5 lg:px-12 py-5 rounded-xl flex flex-col ${
-          theme == "dark" ? "bg-[#f5f5f5]" : "bg-[#f5f5f5]"
+          theme == "dark" ? "bg-gray-600" : "bg-[#f5f5f5]"
         }`}>
         <div className="flex justify-between items-center gap-2">
           <div className="flex flex-col">
