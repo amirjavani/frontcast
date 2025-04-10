@@ -17,7 +17,7 @@ function CardComponent({ productsCard }: { productsCard: ProductsCard }) {
           alt="pic"
         />
       </Link>
-      <div className="px-5 py-6 flex flex-col gap-16">
+      <div className="px-5 py-6 flex flex-col gap-16 justify-between h-full">
         <p className="font-bold text-[20px]">{productsCard.title}</p>
         <div
           className={`flex items-center justify-between ${
