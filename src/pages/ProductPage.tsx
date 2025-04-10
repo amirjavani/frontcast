@@ -6,7 +6,7 @@ import { BsCash, BsClock, BsMortarboard, BsYoutube } from "react-icons/bs";
 import { useAppSelector } from "../store/hook";
 import disabledIntro from "../assets/images/disabled-intro.png";
 import AccordionComponent from "../Components/AccordionComponent";
-export type ProductSesions = {
+export type Productsessions = {
   title: string;
   description: Array<string>;
 };
@@ -21,7 +21,7 @@ export type ProductType = {
   description: string;
   studentsCount: string;
   timeCourse: string;
-  sesions: Array<ProductSesions>;
+  sessions: Array<Productsessions>;
 };
 
 function ProductPage() {
@@ -116,14 +116,14 @@ function ProductPage() {
         <div>{product?.description}</div>
         <div className="my-10">
           <h3 className="text-[22px]">سرفصل ها</h3>
-          {product?.sesions &&
-            product?.sesions.map((item, index) => {
+          {product?.sessions &&
+            product?.sessions.map((item, index) => {
               let startnumber = 0;
-              product.sesions.slice(0, index).forEach((item) => {
+              product.sessions.slice(0, index).forEach((item) => {
                 startnumber = startnumber + item.description.length;
               });
               return (
-                <AccordionComponent sesion={item} startNum={startnumber} />
+                <AccordionComponent session={item} startNum={startnumber} />
               );
             })}
         </div>
