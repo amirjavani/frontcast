@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router";
 import { useThemeContext } from "../Context/ThemeProvider";
 import { useAppDispatch, useAppSelector } from "../store/hook";
 import { BsTrash } from "react-icons/bs";
-import { removeOrder } from "../store/orderSlice";
+import { removeOrder, submitingOrders } from "../store/orderSlice";
 import { toast } from "react-toastify";
 
 function CartPage() {
@@ -18,7 +18,19 @@ function CartPage() {
     0
   );
 
-  const submitOrders = () => {};
+  const submitOrders = async () => {
+    const res = await dispatch(submitingOrders(orders));
+    if (submitingOrders.fulfilled.match(res)) {
+      console.log("orders successful:", res.payload.message);
+      toast.success(`${res.payload.message}`);
+      navigator(-2);
+    } else {
+      console.error("orders failed:", res.payload);
+      toast.error(`${res.payload}`);
+    }
+  };
+
+  
   return (
     <div
       className={` ${
@@ -47,7 +59,13 @@ function CartPage() {
         ))
       ) : (
         <p>
-          سبد خرید شما خالی است. <Link to={'/courses'} className='underline cursor-pointer text-blue-400'> خرید</Link>
+          سبد خرید شما خالی است.{" "}
+          <Link
+            to={"/courses"}
+            className="underline cursor-pointer text-blue-400">
+            {" "}
+            خرید
+          </Link>
         </p>
       )}
 

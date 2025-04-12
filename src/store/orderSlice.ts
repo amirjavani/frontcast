@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginUserAPI } from "../utilities/api";
-import { LoginPayload } from "../Components/LoginForm";
+import { createOrdersAPI } from "../utilities/api";
 
 export type Order = {
   id: number;
@@ -15,7 +14,7 @@ interface OrderState {
 }
 
 const ininitialState: OrderState = {
-  orders: JSON.parse(localStorage.getItem("orders")!) as Array<Order> || [],
+  orders: (JSON.parse(localStorage.getItem("orders")!) as Array<Order>) || [],
   loading: false,
   error: null,
 };
@@ -32,45 +31,41 @@ const orderSlice = createSlice({
       }
     },
     removeOrder: (state, action) => {
-      state.orders = state.orders.filter(
-        (order) => order.id != action.payload
-      );
+      state.orders = state.orders.filter((order) => order.id != action.payload);
       localStorage.setItem("orders", JSON.stringify(state.orders));
     },
   },
-  //   extraReducers(builder) {
-  //     builder
-  //       .addCase(loginThunk.fulfilled, (state, action) => {
-  //         state.token = action.payload.token;
-  //         state.username = action.payload.username;
-  //         state.loading = false;
-
-  //       })
-  //       .addCase(loginThunk.rejected, (state, action) => {
-  //         state.loading = false;
-  //         state.error = action.payload as string;
-  //       })
-  //       .addCase(loginThunk.pending, (state) => {
-  //         state.loading = true;
-  //         state.error = null;
-  //       });
-  //   },
+  extraReducers(builder) {
+    builder
+      .addCase(submitingOrders.fulfilled, (state) => {
+        state.orders = [];
+        state.loading = false;
+      })
+      .addCase(submitingOrders.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(submitingOrders.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      });
+  },
 });
 
-// export const loginThunk = createAsyncThunk(
-//   "/api/login",
-//   async (payload: LoginPayload, { rejectWithValue }) => {
-//     try {
-//       const res = await loginUserAPI(payload);
-//       return res;
-//       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//     } catch (error: any) {
-//       // Optional: extract server error message
-//       const message = error.response?.data?.message || error.message;
-//       return rejectWithValue(message);
-//     }
-//   }
-// );
+export const submitingOrders = createAsyncThunk(
+  "/api/orders",
+  async (payload: Array<Order>, { rejectWithValue }) => {
+    try {
+      const res = await createOrdersAPI(payload);
+      return res;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      // Optional: extract server error message
+      const message = error.response?.data?.message || error.message;
+      return rejectWithValue(message);
+    }
+  }
+);
 
 export const { addNewOrder, removeOrder } = orderSlice.actions;
 
