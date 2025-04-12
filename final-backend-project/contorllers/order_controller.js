@@ -3,7 +3,7 @@ let orders = [];
 
 const createOrder = (req, res) => {
     const { products: orderedProducts } = req.body;
-
+    
     if (!Array.isArray(orderedProducts) || orderedProducts.length === 0) {
         return res.status(400).json({ message: 'محصولات مورد نظر یافت نشد' });
     }

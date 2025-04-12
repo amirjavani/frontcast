@@ -22,15 +22,15 @@ function CartPage() {
     const res = await dispatch(submitingOrders(orders));
     if (submitingOrders.fulfilled.match(res)) {
       console.log("orders successful:", res.payload.message);
-      toast.success(`${res.payload.message}`);
-      navigator(-2);
+      toast.success(`خرید شما موفقیت آمیز بود`);
+      navigator(`/product/${orders[0].id}`);
     } else {
       console.error("orders failed:", res.payload);
       toast.error(`${res.payload}`);
     }
   };
 
-  
+
   return (
     <div
       className={` ${
