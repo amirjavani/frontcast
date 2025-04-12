@@ -28,7 +28,7 @@ function Header() {
           <DarkmodeLightmodeButton />
 
           <Link className="" to={"/"}>
-            <img className="h-6 sm:h-10" src={frontcastLogo} alt="logo" />
+            <img className="h-6 sm:h-8 lg:h-10" src={frontcastLogo} alt="logo" />
           </Link>
         </nav>
         <div

@@ -30,7 +30,7 @@ const LoginForm = () => {
     if (loginThunk.fulfilled.match(res)) {
       console.log("Login successful:", res.payload.message);
       toast.success(`${res.payload.message}`);
-      navigator(-1);
+      navigator(-2);
     } else {
       console.error("Login failed:", res.payload);
       toast.error(`${res.payload}`);

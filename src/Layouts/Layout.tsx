@@ -7,6 +7,7 @@ import CoursesPage from "../pages/CoursesPage";
 import AuthPage from "../pages/AuthPage";
 import MyAccountPage from "../pages/MyAccountPage";
 import ProductPage from "../pages/ProductPage";
+import CartPage from "../pages/CartPage";
 
 function Layout() {
   const { theme } = useThemeContext();
@@ -26,7 +27,9 @@ function Layout() {
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/my-account" element={<MyAccountPage />}>
+          
             <Route
               index
               element={
@@ -42,6 +45,7 @@ function Layout() {
             <Route path="downloads" element={<>دوره ها</>} />
             <Route path="edit-account" element={<>ویرایش</>} />
           </Route>
+
         </Routes>
         <Footer />
       </div>
