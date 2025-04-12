@@ -1,17 +1,23 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useThemeContext } from "../Context/ThemeProvider";
-import { useAppSelector } from "../store/hook";
+import { useAppDispatch, useAppSelector } from "../store/hook";
 import { BsTrash } from "react-icons/bs";
+import { removeOrder } from "../store/orderSlice";
+import { toast } from "react-toastify";
 
 function CartPage() {
   const { theme } = useThemeContext();
   const token = useAppSelector((state) => state?.authentication.token);
+  const dispatch = useAppDispatch();
   const navigator = useNavigate();
 
   const orders = useAppSelector((state) => state.orders.orders);
 
-  const totalPrice = orders.reduce((sum, order) => sum +  Number(order.price.replace(/,/g, "")), 0)
-   
+  const totalPrice = orders.reduce(
+    (sum, order) => sum + Number(order.price.replace(/,/g, "")),
+    0
+  );
+
   const submitOrders = () => {};
   return (
     <div
@@ -29,19 +35,25 @@ function CartPage() {
             <p>{item.title}</p>
             <div className="flex gap-12 items-center">
               <p>{item.price} تومان</p>
-              <BsTrash className="text-red-600 text-2xl" />
+              <BsTrash
+                onClick={() => {
+                  dispatch(removeOrder(item.id));
+                  toast.info(`${item.title} از سبد خرید حذف شد.`);
+                }}
+                className="cursor-pointer text-red-600 text-2xl"
+              />
             </div>
           </div>
         ))
       ) : (
-        <></>
+        <p>
+          سبد خرید شما خالی است. <Link to={'/courses'} className='underline cursor-pointer text-blue-400'> خرید</Link>
+        </p>
       )}
 
       <div className="p-6 flex bg-blue-100 text-blue-500 font-bold w-full md:w-10/12 justify-between rounded-xl">
         <div>جمع کل : </div>
-        <div className="ml-20">
-          {totalPrice.toLocaleString()} تومان
-        </div>
+        <div className="ml-20">{totalPrice.toLocaleString()} تومان</div>
       </div>
       <button
         onClick={() => (token ? submitOrders() : navigator("/auth"))}

@@ -33,7 +33,7 @@ const orderSlice = createSlice({
     },
     removeOrder: (state, action) => {
       state.orders = state.orders.filter(
-        (order) => order.id != action.payload.id
+        (order) => order.id != action.payload
       );
       localStorage.setItem("orders", JSON.stringify(state.orders));
     },
