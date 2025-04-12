@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { getSingleProduct } from "../utilities/api";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useThemeContext } from "../Context/ThemeProvider";
 import { BsCash, BsClock, BsMortarboard, BsYoutube } from "react-icons/bs";
-import { useAppSelector } from "../store/hook";
+import { useAppDispatch, useAppSelector } from "../store/hook";
 import disabledIntro from "../assets/images/disabled-intro.png";
 import AccordionComponent from "../Components/AccordionComponent";
 export type Productsessions = {
@@ -12,6 +12,8 @@ export type Productsessions = {
 };
 import unknownPic from "../assets/images/unknown.jpg";
 import masoodPic from "../assets/images/ZoomedMasood.jpeg";
+import { addNewOrder, Order } from "../store/orderSlice";
+import { toast } from "react-toastify";
 
 export type ProductType = {
   id: number;
@@ -32,6 +34,8 @@ function ProductPage() {
   const { theme } = useThemeContext();
   const [product, setProduct] = useState<ProductType>();
 
+  const navigator = useNavigate();
+
   const fetchProduct = useCallback(async () => {
     try {
       const res = await getSingleProduct(id);
@@ -45,7 +49,18 @@ function ProductPage() {
     fetchProduct();
   }, [fetchProduct]);
 
-  const addProductToCart = () => {};
+  const orders: Array<Order> = useAppSelector((state) => state.orders.orders);
+  const dispatch = useAppDispatch();
+  console.log(orders);
+  const addProductToCart = () => {
+    const isExist = orders.some((order) => order.id == product?.id);
+    if (isExist) {
+      toast.error("این دوره داخل سبد خرید وجود دارد.");
+    } else {
+      dispatch(addNewOrder(product));
+      toast.success('دوره به سبد خرید اضافه شد')
+    }
+  };
 
   const token = useAppSelector((state) => state?.authentication.token);
 
@@ -79,7 +94,13 @@ function ProductPage() {
               </div>
               <button
                 className="ml-auto my-4 text-[rgb(248,249,250)] px-3 bg-[#1976D2] py-2 rounded-lg hover:bg-[#1564b3] transition-colors "
-                onClick={() => addProductToCart}>
+                onClick={() => {
+                  if (token) addProductToCart();
+                  else {
+                    navigator("/auth");
+                    toast.info('برای ثبت نام در دوره ابتدا وارد شوید')
+                  }
+                }}>
                 ثبت نام در دوره
               </button>
             </div>
@@ -152,7 +173,10 @@ function ProductPage() {
             </div>
           </div>
           <div className="border border-gray-300 px-4 py-6 mt-6 mr-0 md:mr-20 bg-gray-300 rounded-2xl">
-            <div className={`flex flex-col border rounded-xl p-4 ${theme=='dark'?'bg-gray-500':'bg-white'} border-gray-300 relative`}>
+            <div
+              className={`flex flex-col border rounded-xl p-4 ${
+                theme == "dark" ? "bg-gray-500" : "bg-white"
+              } border-gray-300 relative`}>
               <div className="absolute h-[150px] w-[50px] border-b border-r border-gray-300 right-[-67px] hidden md:block top-[-50px]"></div>
               <div className="flex items-center gap-2 ">
                 <img className="rounded-full h-20" src={masoodPic} alt="" />
