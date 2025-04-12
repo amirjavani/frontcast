@@ -15,7 +15,7 @@ interface OrderState {
 }
 
 const ininitialState: OrderState = {
-  orders:  [],
+  orders: JSON.parse(localStorage.getItem("orders")!) as Array<Order> || [],
   loading: false,
   error: null,
 };
@@ -28,12 +28,14 @@ const orderSlice = createSlice({
       const isExist = state.orders.some((item) => item.id == action.payload.id);
       if (!isExist) {
         state.orders.push(action.payload);
+        localStorage.setItem("orders", JSON.stringify(state.orders));
       }
     },
     removeOrder: (state, action) => {
       state.orders = state.orders.filter(
         (order) => order.id != action.payload.id
       );
+      localStorage.setItem("orders", JSON.stringify(state.orders));
     },
   },
   //   extraReducers(builder) {
