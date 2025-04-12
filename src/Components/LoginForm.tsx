@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { loginThunk } from "../store/authSlice";
 import { useAppDispatch } from "../store/hook";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 export type LoginPayload = {
   username: string;
@@ -14,7 +14,6 @@ export type LoginPayload = {
 
 const LoginForm = () => {
   const [showPassLogin, setShowPassLogin] = useState(false);
-  //const [showPassRegister, setShowPassRegister] = useState(false);
   const navigator = useNavigate();
   const { theme } = useThemeContext();
   const dispatch = useAppDispatch();
@@ -30,11 +29,11 @@ const LoginForm = () => {
 
     if (loginThunk.fulfilled.match(res)) {
       console.log("Login successful:", res.payload.message);
-      toast.success(`${res.payload.message}`)
-      navigator("/my-account");
+      toast.success(`${res.payload.message}`);
+      navigator(-1);
     } else {
       console.error("Login failed:", res.payload);
-      toast.error(`${res.payload}`)
+      toast.error(`${res.payload}`);
     }
   };
 
@@ -118,7 +117,6 @@ const LoginForm = () => {
           ورود
         </button>
       </form>
-      
     </div>
   );
 };

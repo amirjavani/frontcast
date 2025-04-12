@@ -28,7 +28,7 @@ function AccordionComponent({
         ${activeTitle?'max-h-94':'max-h-0'}
         `}>
         {session?.description.map((dis, index) => (
-          <div className="flex gap-3 ">
+          <div key={index} className="flex gap-3 ">
             <span className="min-w-1/12">
               {(startNum + index + 1 < 10 ? "0" : "") +
                 (startNum + index + 1) +

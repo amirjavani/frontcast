@@ -10,6 +10,8 @@ export type Productsessions = {
   title: string;
   description: Array<string>;
 };
+import unknownPic from "../assets/images/unknown.jpg";
+import masoodPic from "../assets/images/ZoomedMasood.jpeg";
 
 export type ProductType = {
   id: number;
@@ -33,7 +35,6 @@ function ProductPage() {
   const fetchProduct = useCallback(async () => {
     try {
       const res = await getSingleProduct(id);
-      console.log(res);
       setProduct(res);
     } catch (error) {
       console.log(error);
@@ -123,9 +124,49 @@ function ProductPage() {
                 startnumber = startnumber + item.description.length;
               });
               return (
-                <AccordionComponent session={item} startNum={startnumber} />
+                <AccordionComponent
+                  key={index}
+                  session={item}
+                  startNum={startnumber}
+                />
               );
             })}
+        </div>
+        <div>
+          <h2 className="text-[20px] font-bold px-5">دیدگاه‌ها:</h2>
+          <div className="flex flex-col border rounded-xl p-4 border-gray-300">
+            <div className="flex items-center gap-2 ">
+              <img className="rounded-full h-20" src={unknownPic} alt="" />
+              <div className="flex flex-col gap-2">
+                <p className="font-bold">meysam</p>
+                <p>آذر 19, 1403 در 10:09 ق.ظ</p>
+              </div>
+            </div>
+            <div className="flex justify-between items-center mt-5 p-2">
+              <p className="text-[15px] md:text-[18px]">
+                بسیار عالی و ممنون از حضور مستمر مهندس در عرصه آموزش.
+              </p>
+              <button className="text-[15px] md:text-[18px] cursor-pointer text-blue-400 bg-blue-100 p-1 md:p-2  rounded">
+                برای پاسخ وارد شوید
+              </button>
+            </div>
+          </div>
+          <div className="border border-gray-300 px-4 py-6 mt-6 mr-0 md:mr-20 bg-gray-300 rounded-2xl">
+            <div className={`flex flex-col border rounded-xl p-4 ${theme=='dark'?'bg-gray-500':'bg-white'} border-gray-300 relative`}>
+              <div className="absolute h-[150px] w-[50px] border-b border-r border-gray-300 right-[-67px] hidden md:block top-[-50px]"></div>
+              <div className="flex items-center gap-2 ">
+                <img className="rounded-full h-20" src={masoodPic} alt="" />
+                <div className="flex flex-col gap-2">
+                  <p className="font-bold">مسعود صدری</p>
+                  <p>آذر 19, 1403 در 1:48 ب.ظ</p>
+                </div>
+              </div>
+              <div className="flex flex-col   mt-5 p-2">
+                <p className="text-[15px] md:text-[18px]">سلام . </p>
+                <p className="text-[15px] md:text-[18px]">ممنونم از لطفتون. </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
